@@ -64,7 +64,7 @@ void scene() {
   void messages() {
     textSize(13);
     fill(0);
-    text("Alexander Reid", width/4, horizon);
+    text("Alexander Reid", width/2, horizon-120);
     text ("Score", width*3/4, horizon-100);
     text(score, width*3/4 +50, horizon - 100);
     text("Project 9", width*3/4, horizon - 120);
@@ -104,18 +104,18 @@ void scene() {
       text(legs, x-10, y +10); //number of legs
 
       strokeWeight(3);
-      stroke(r, g, b);
+      stroke(random(255));
       float legX = x-18; //actual legs
       for (int i=0; i<legs; i++) {
         if (count/30 % 2 == 0) {
-          line(legX, y+20, legX-8, y+45);
+          line(legX, y+20, legX-15, y+45);
         } else {
-          line(legX, y+20, legX+8, y+45);
+          line(legX, y+20, legX+15, y+45);
         }
         legX +=8; //spacing between legs
 
-        stroke(0);
-        strokeWeight(1);
+        stroke(random(255));
+        strokeWeight(3);
       }
       
     }
@@ -163,7 +163,7 @@ void scene() {
       }
       void move() {
         x += dx;
-        if (x < 25 || X > width) dx *= -1;
+        if (x < 25 || x > width - 75) dx *= -1;
         
         // catch squid 
     for (int i = 0; i < school.length; i++) { 
@@ -192,13 +192,15 @@ void scene() {
      dx = 1; 
      r = 222; 
      g = 113; 
-     b = 63; 
+     b = 63;
    } 
  
  
-   void show() {      
+   void show() {  
+     noStroke();
      fill(r, g, b); 
      ellipse(x, y, 60, 60); 
+     stroke(0);
    } 
    // move the sun, reset its x position if it goes off screen 
    void move() { 
