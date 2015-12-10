@@ -1,0 +1,210 @@
+////Project 9
+////Alexander Reid
+///CST-112-Eve
+
+float horizon;
+int score;
+float boatX=0, boatDX=5;
+float waterR, waterG, waterB;
+String [] jellyNames = {"Ali", "Finn", "Lou", "Amy", "Shai", };
+String [] boatNames  = {"Zeta", "Beta", "Gamma", "Theta"};
+Jelly [] school; //array of object: squid
+Boat [] fleet; //array of object: boats
+Sun shine; //object: sun
+
+void setup() {
+  size(800, 600);
+  horizon = height/4;
+  reset();
+}
+void reset() {
+  score = 0;
+  shine = new Sun(); //object: sun
+  school = new Jelly[5]; //initialize array: jellyfish
+  float jellyX = width/4;
+  for (int i=0; i<school.length; i++) {
+    school[i] = new Jelly(jellyX, jellyNames[i]);
+    jellyX += 150;
+  }
+  fleet = new Boat[4]; //initalize array: boats
+  for (int i=0; i<fleet.length; i++) {
+    fleet[i] = new Boat(boatNames[i]);
+  }
+}
+void draw() {
+  background(140, 197, 234);
+  scene();
+  messages();
+  action();
+}
+
+void action() {
+  for (int i=0; i<school.length; i++) { //moves jellyfish
+    school[i].move();
+  }
+  for (int i=0; i<fleet.length; i++) { //moves boats
+    fleet[i].move();
+  }
+}
+void scene() {
+  noStroke();
+  fill(103, 127, 209);
+  rect(0, horizon, width, height); //water
+  stroke(0);
+
+  for (int i=0; i<school.length; i++) { //shows jellyfish
+    school[i].show();
+  }
+  for (int i=0; i<fleet.length; i++) { //moves boats
+    fleet[i].show();
+  }
+ shine.show();
+ shine.move();
+}
+  void messages() {
+    textSize(13);
+    fill(0);
+    text("Alexander Reid", width/4, horizon);
+    text ("Score", width*3/4, horizon-100);
+    text(score, width*3/4 +50, horizon - 100);
+    text("Project 9", width*3/4, horizon - 120);
+    text("Press 'r' to reset", width/4-180, horizon -85);
+    textSize(11);
+  }
+
+  class Jelly { //class: jellyfish
+    float x, y, dx, dy;
+    float r, g, b;
+    int legs = 8;
+    int count = 0;
+    String name = "";
+
+    Jelly(float x, String name) {
+      this.name = name;
+      this.x = x;
+      r = random(255);
+      g = random(255);
+      b = random(255);
+      seaFloor();
+    }
+    void seaFloor() {
+      y = height - 20;
+      dy = -random(0.2, 2);
+      legs = int(random(1, 6));
+    }
+
+    void show() { //shows jellies
+      count++;
+      noStroke();
+      fill(r, g, b);
+      ellipse(x, y, 40, 40);
+      rect(x-20, y, 40, 20);
+      fill(0);
+      text(name, x-10, y);  //jelly names
+      text(legs, x-10, y +10); //number of legs
+
+      strokeWeight(3);
+      stroke(r, g, b);
+      float legX = x-18; //actual legs
+      for (int i=0; i<legs; i++) {
+        if (count/30 % 2 == 0) {
+          line(legX, y+20, legX-8, y+45);
+        } else {
+          line(legX, y+20, legX+8, y+45);
+        }
+        legX +=8; //spacing between legs
+
+        stroke(0);
+        strokeWeight(1);
+      }
+      
+    }
+
+      void move() { //moves jellies
+        y+= dy;
+        if (y < horizon || y > height) dy*= -1;
+      }
+    }
+
+    class Boat { //class: boat
+      float x, y, dx;
+      float r, g, b;
+      String name = "";
+      int cargo=0, caught=0;
+
+      Boat(String name) {
+        this.name = name;
+        x= random(30, width - 60);
+        y = horizon - 25;
+        dx = random(-6, 6);
+        r = random(255);
+        g = random(255);
+        b = random(255);
+      }
+
+      void show() {
+        noStroke(); 
+        fill(r, g, b); 
+        rect(x, y, 50, 25);// body 
+        if (dx < 0) { 
+          triangle( x, y+25, x - 40, y, x, y); // front 
+          rect(x, y - 20, 30, 30); // cabin 
+          fill(0); 
+          text(cargo, x + 10, y - 5); // display cargo
+        } else { 
+          triangle( x+49, y+25, x + 90, y, x+49, y); 
+          rect(x+20, y - 20, 30, 30); // cabin 
+          fill(0); 
+          text(cargo, x + 30, y - 5); // display cargo
+        } 
+        stroke(0); 
+        fill(0); 
+        text(name, x, y + 15);  // display boat name 
+      }
+      void move() {
+        x += dx;
+        if (x < 25 || X > width) dx *= -1;
+        
+        // catch squid 
+    for (int i = 0; i < school.length; i++) { 
+       if (dist(x, y, school[i].x, school[i].y) < 50) { 
+        cargo += school[i].legs; 
+         school[i].seaFloor(); // caught squid is sent to the bottom, gets new random legs 
+       } 
+     } 
+     // store cargo as caught when you return to left of screen 
+     if (x < 25) { 
+       caught += cargo; 
+       cargo = 0; 
+       score += caught; 
+     } 
+   } 
+ } 
+ // Sun class 
+ class Sun { 
+   float x, y, dx; 
+   float r, g, b; 
+ 
+ 
+   Sun() { 
+     x = width*3/4; 
+     y = height/4 - 100; 
+     dx = 1; 
+     r = 222; 
+     g = 113; 
+     b = 63; 
+   } 
+ 
+ 
+   void show() {      
+     fill(r, g, b); 
+     ellipse(x, y, 60, 60); 
+   } 
+   // move the sun, reset its x position if it goes off screen 
+   void move() { 
+     x += dx;  
+     if (x > width + 200) x = 0; 
+
+   }
+   
+ }
