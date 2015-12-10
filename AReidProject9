@@ -97,20 +97,20 @@ void scene() {
       count++;
       noStroke();
       fill(r, g, b);
-      ellipse(x, y, 40, 40);
-      rect(x-20, y, 40, 20);
+      ellipse(x-70, y, 40, 40);
+      rect(x-90, y, 40, 20);
       fill(0);
-      text(name, x-10, y);  //jelly names
-      text(legs, x-10, y +10); //number of legs
+      text(name, x-80, y);  //jelly names
+      text(legs, x-75, y +10); //number of legs
 
       strokeWeight(3);
       stroke(random(255));
       float legX = x-18; //actual legs
       for (int i=0; i<legs; i++) {
         if (count/30 % 2 == 0) {
-          line(legX, y+20, legX-15, y+45);
+          line(legX-70, y+20, legX-80, y+45);
         } else {
-          line(legX, y+20, legX+15, y+45);
+          line(legX-70, y+20, legX-60, y+45);
         }
         legX +=8; //spacing between legs
 
