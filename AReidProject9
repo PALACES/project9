@@ -147,12 +147,12 @@ void scene() {
         fill(r, g, b); 
         rect(x, y, 50, 25);// body 
         if (dx < 0) { 
-          triangle( x, y+25, x - 40, y, x, y); // front 
+          triangle( x, y+25, x - 20, y, x, y); // front 
           rect(x, y - 20, 30, 30); // cabin 
           fill(0); 
           text(cargo, x + 10, y - 5); // display cargo
         } else { 
-          triangle( x+49, y+25, x + 90, y, x+49, y); 
+          triangle( x+49, y+25, x + 70, y, x+49, y); 
           rect(x+20, y - 20, 30, 30); // cabin 
           fill(0); 
           text(cargo, x + 30, y - 5); // display cargo
