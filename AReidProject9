@@ -16,6 +16,7 @@ void setup() {
   size(800, 600);
   horizon = height/4;
   reset();
+    
 }
 void reset() {
   score = 0;
@@ -24,7 +25,7 @@ void reset() {
   float jellyX = width/4;
   for (int i=0; i<school.length; i++) {
     school[i] = new Jelly(jellyX, jellyNames[i]);
-    jellyX += 150;
+    jellyX += 145;
   }
   fleet = new Boat[4]; //initalize array: boats
   for (int i=0; i<fleet.length; i++) {
@@ -35,9 +36,36 @@ void draw() {
   background(140, 197, 234);
   scene();
   messages();
+  if (key >= 'A' && key <= 'Z') {
+    jellyScore(school, school.length);
+    boatScore(fleet, fleet.length);
+  } else {
+
   action();
+ }
+
 }
 
+void jellyScore(Jelly[] a, int m){
+  float x = width/4;
+  float y = height/4;
+  float w = width/4;
+  float h = height/4;
+  fill(100);
+  rect(x-20, y-30, w, h);
+  
+}
+
+void boatScore(Boat[]a, int m) {
+  float x = width/2;
+  float y = height/2;
+  float w = width/2;
+  float h = height/2;
+  fill(100);
+  rect(x-20, y-30, w, h);
+  
+}
+  
 void action() {
   for (int i=0; i<school.length; i++) { //moves jellyfish
     school[i].move();
@@ -141,7 +169,7 @@ void scene() {
         g = random(255);
         b = random(255);
       }
-
+        
       void show() {
         noStroke(); 
         fill(r, g, b); 
