@@ -47,20 +47,20 @@ void draw() {
 }
 
 void jellyScore(Jelly[] a, int m){
-  float x = width/4;
-  float y = height/4;
-  float w = width/4;
-  float h = height/4;
+  float x = width/4-100;
+  float y = height/4-100;
+  float w = width/4*1.7;
+  float h = height/4*1.7;
   fill(100);
   rect(x-20, y-30, w, h);
   
 }
 
 void boatScore(Boat[]a, int m) {
-  float x = width/2;
-  float y = height/2;
-  float w = width/2;
-  float h = height/2;
+  float x = width/2-100;
+  float y = height/2+10;
+  float w = width/2-50;
+  float h = height/2-20;
   fill(100);
   rect(x-20, y-30, w, h);
   
