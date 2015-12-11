@@ -51,9 +51,17 @@ void jellyScore(Jelly[] a, int m){
   float y = height/4-100;
   float w = width/4*1.7;
   float h = height/4*1.7;
-  fill(100);
+  fill(255);
   rect(x-20, y-30, w, h);
-  
+  fill(0, 0, 0);
+  textSize(15);
+  text("Jelly Scores!", x+100, y);
+  textSize(10);
+  text("Name", x, y+20);
+  text("Legs", x+75, y+20);
+  text("X", x+150,y+20);
+  text("Y", x+215,y+20);
+  text("DY", x+275,y+20);
 }
 
 void boatScore(Boat[]a, int m) {
@@ -63,7 +71,14 @@ void boatScore(Boat[]a, int m) {
   float h = height/2-20;
   fill(100);
   rect(x-20, y-30, w, h);
-  
+  fill(255);
+  textSize(15);
+  text("Boat Scores!", x+100, y);
+  textSize(10);
+  text("Name", x, y+20);
+  text("Cargo", x+75, y+20);
+  text("X", x+175,y+20);
+  text("DX", x+275,y+20);
 }
   
 void action() {
