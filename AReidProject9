@@ -7,7 +7,7 @@ int score;
 float boatX=0, boatDX=5;
 float waterR, waterG, waterB;
 String [] jellyNames = {"Ali", "Finn", "Lou", "Amy", "Shai", };
-String [] boatNames  = {"Zeta", "Beta", "Gamma", "Theta"};
+String [] boatNames  = {"Zeta", "Beta", "Gamma", "Theta", "Lambda"};
 Jelly [] school; //array of object: squid
 Boat [] fleet; //array of object: boats
 Sun shine; //object: sun
@@ -26,7 +26,7 @@ void reset() {
     school[i] = new Jelly(jellyX, jellyNames[i]);
     jellyX += 145;
   }
-  fleet = new Boat[4]; //initalize array: boats
+  fleet = new Boat[5]; //initalize array: boats
   for (int i=0; i<fleet.length; i++) {
     fleet[i] = new Boat(boatNames[i]);
   }
@@ -93,7 +93,7 @@ void boatScore(Boat[]a, int m) { //scorecards for boats
     text(a[i].cargo, x+75, y+40);
     text(a[i].x, x+175, y+40);
     text(a[i].dx, x+275, y+40);
-    y += 50;
+    y += 45;
   }
 }
 
@@ -123,11 +123,12 @@ void scene() {
 void messages() {
   textSize(13);
   fill(0);
-  text("Alexander Reid", width/2, horizon-120);
-  text ("Score", width*3/4, horizon-100);
-  text(score, width*3/4 +50, horizon - 100);
-  text("Project 9", width*3/4, horizon - 120);
+  text("Alexander Reid", width*3/4, horizon-120);
+  text ("Score", width*3/4, horizon-80);
+  text(score, width*3/4 +50, horizon - 80);
+  text("Project 9", width*3/4, horizon - 100);
   text("Press 'r' to reset", width/4-180, horizon -85);
+  text("Shift & any key for Scores", width/4-180, horizon-105);
   textSize(11);
 }
 
