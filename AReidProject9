@@ -130,6 +130,7 @@ void messages() {
   text("Press 'r' to reset", width/4-180, horizon -85);
   text("Shift & any key for Scores", width/4-180, horizon-105);
   textSize(11);
+
 }
 
 class Jelly { //class: jellyfish
@@ -151,6 +152,8 @@ class Jelly { //class: jellyfish
     y = height - 20;
     dy = -random(0.2, 2);
     legs = int(random(1, 6));
+      
+  
   }
 
   void show() { //shows jellies
