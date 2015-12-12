@@ -121,6 +121,10 @@ void scene() {
   shine.move();
 }
 void messages() {
+  float x = width/2;
+  float y = horizon + 20;
+  float x1 = width/4 - 120;
+  float y1 = height/4 -200;
   textSize(13);
   fill(0);
   text("Alexander Reid", width*3/4, horizon-120);
@@ -130,7 +134,7 @@ void messages() {
   text("Press 'r' to reset", width/4-180, horizon -85);
   text("Shift & any key for Scores", width/4-180, horizon-105);
   textSize(11);
-
+  text("Press X to sort by Squid", x, y);
 }
 
 class Jelly { //class: jellyfish
@@ -203,6 +207,24 @@ class Boat { //class: boat
     g = random(255);
     b = random(255);
   }
+  
+  void sortJellyX(Jelly[]a, int many) {
+    for (int m=many; m>1; m--) { int k = 0; 
+    for(int j = 1; j<m; j++) {
+      if (a[j].x > a[k].x) k=j;
+    }
+
+    
+    }
+    
+  }
+    void keyPressed() {
+      if (key == 'r') {reset();}
+      if (key == 'x') {sortJellyX(school, school.length);}
+      
+    }
+      
+ 
 
   void show() {
     noStroke(); 
